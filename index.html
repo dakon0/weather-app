@@ -5,13 +5,50 @@
     <meta name="viewport" content="width=device-width">
     <title>Wheather app</title>
     <script src="script.js" defer></script>
+    <link rel="stylesheet" href="style.css" type="text/css">
   </head>
   <body>
-    <p class="temp-data">Current temperature in <span class="location"></span> is <span class="temp"></span> Kelvins.</p>
+    <div class="application">
 
-    <button id="find-me">Show my location</button><br />
-    <p id="status"></p>
-    <a id="map-link" target="_blank"></a>
+      <div class="header">
+        <div class="logo-container">
+          <p>Weather app</p>
+        </div>
 
+        <div class="input-container">
+          <form>
+            <input type="text" class="input-location-name" placeholder="Find wheather in...">
+          </form>
+        </div>
+
+        <div class="loc-button-container">
+          <button id="find-loc-weather">Wheather at my location</button><br />
+        </div>
+      </div>
+
+      <div class="presentation">
+
+        <div class="date"></div>
+        <div class="location"></div>
+        <div class="temp-data-container">
+          <div class="temp"></div>
+
+          <div class="unit-toggle">
+            <input type="checkbox" id="switch" class="unitsCheck" />
+            <label for="switch" class="toggle">
+              <p class="temp-units-checker-para">°F °C</p>
+            </label>
+          </div>
+
+        </div>
+        <div class="humidity-wind">
+          <div class="humidity"></div>
+          <div class="wind"></div>
+        </div>
+
+        <div class="weather-description"></div>
+
+      </div>
+    </div>
   </body>
 </html>
