@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "the web application you can use to find out the weather",
   "scripts": {
-    "build": "parcel build docs/index.html",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "npm run test && parcel build docs/index.html",
+    "test": "node tests/not-a-real-test.test.js"
   },
   "repository": {
     "type": "git",
