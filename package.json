@@ -19,7 +19,7 @@
   "devDependencies": {
     "babel-eslint": "^10.1.0",
     "eslint": "^8.25.0",
-    "parcel": "^2.7.0",
+    "parcel-bundler": "^1.12.5",
     "prettier": "^2.7.1"
   }
 }
