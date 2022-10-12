@@ -1,22 +1,22 @@
-const key = "4fa592d94426516b6e4d2bdb8f30b2dd"; //openweathermap API key
-const tempPara = document.querySelector(".temp");
-const unitsCheck = document.querySelector(".unitsCheck");
-const humidityPara = document.querySelector(".humidity");
-const windPara = document.querySelector(".wind");
-const weatherDescPara = document.querySelector(".weather-description");
-const city = document.querySelector(".location");
+const key = '4fa592d94426516b6e4d2bdb8f30b2dd'; //openweathermap API key
+const tempPara = document.querySelector('.temp');
+const unitsCheck = document.querySelector('.unitsCheck');
+const humidityPara = document.querySelector('.humidity');
+const windPara = document.querySelector('.wind');
+const weatherDescPara = document.querySelector('.weather-description');
+const city = document.querySelector('.location');
 // const tempUnits = document.querySelector('.tempUnits');
-const input = document.querySelector(".input-location-name");
-const datePara = document.querySelector(".date");
+const input = document.querySelector('.input-location-name');
+const datePara = document.querySelector('.date');
 
 let temp;
 let date;
 
 function getWeatherByCity(location) {
   fetch(
-    "https://api.openweathermap.org/data/2.5/weather?q=" +
+    'https://api.openweathermap.org/data/2.5/weather?q=' +
       location +
-      "&appid=" +
+      '&appid=' +
       key
   )
     .then(function (resp) {
@@ -29,7 +29,6 @@ function getWeatherByCity(location) {
         // tempUnits.textContent = '°C';
       } else if (unitsCheck.checked) {
         temp = (((data.main.temp - 273.15) * 9) / 5 + 32).toFixed(2);
-        // tempUnits.textContent = '°F';
       }
 
       tempPara.textContent = temp;
@@ -38,14 +37,14 @@ function getWeatherByCity(location) {
       windPara.textContent = `${data.wind.speed} m/s`;
       weatherDescPara.textContent = data.weather[0].description;
 
-      date = `${Date().slice(0, 3)}, ${Date().slice(9, 11)}${Date().slice(
-        4,
-        8
-      )}${Date().slice(11, 16)}`;
+      date = `${Date().slice(0, 3)},
+        ${Date().slice(8, 11)}
+        ${Date().slice(4, 8)}
+        ${Date().slice(11, 16)}`;
       datePara.textContent = date;
     })
     .catch(function (error) {
-      console.log("Caught an error: ", error);
+      console.log('Caught an error: ', error);
     });
 }
 
@@ -72,12 +71,12 @@ function getWeatherBylatlon(latitude, longitude) {
       weatherDescPara.textContent = data.weather[0].description;
     })
     .catch(function (error) {
-      console.log("Caught an error: ", error);
+      console.log('Caught an error: ', error);
     });
 }
 
 function getLocalWeather() {
-  const status = document.querySelector("#status");
+  const status = document.querySelector('#status');
 
   function success(position) {
     const latitude = position.coords.latitude;
@@ -86,11 +85,11 @@ function getLocalWeather() {
   }
 
   function error() {
-    status.textContent = "Unable to retrieve your location";
+    status.textContent = 'Unable to retrieve your location';
   }
 
   if (!navigator.geolocation) {
-    status.textContent = "Geolocation is not supported by your browser";
+    status.textContent = 'Geolocation is not supported by your browser';
   } else {
     navigator.geolocation.getCurrentPosition(success, error);
   }
@@ -114,25 +113,23 @@ function celsius2Ferenheit(tempInCelsius) {
 
 // Main Code:
 document
-  .querySelector("#find-loc-weather")
-  .addEventListener("click", getLocalWeather);
-unitsCheck.addEventListener("change", () => {
+  .querySelector('#find-loc-weather')
+  .addEventListener('click', getLocalWeather);
+unitsCheck.addEventListener('change', () => {
   if (!unitsCheck.checked) {
     tempPara.textContent = temp = ferenheit2Celsius(temp);
-    // tempUnits.textContent = '°C';
   } else if (unitsCheck.checked) {
     tempPara.textContent = temp = celsius2Ferenheit(temp);
-    // tempUnits.textContent = '°F';
   }
 });
 
-input.addEventListener("keypress", (event) => {
-  if (event.key === "Enter") {
+input.addEventListener('keypress', (event) => {
+  if (event.key === 'Enter') {
     event.preventDefault();
     getWeatherByCity(input.value);
-    input.value = "";
+    input.value = '';
   }
   console.log(event);
 });
 
-getWeatherByCity("London");
+getWeatherByCity('London');
